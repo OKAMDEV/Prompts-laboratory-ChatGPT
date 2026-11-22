@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es-MX" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Escribe mejores instrucciones para ChatGPT con ejemplos para la escuela, el trabajo y la vida diaria.">
+  <title>Laboratorio de Prompts</title>
+  <link rel="stylesheet" href="./estilos.css">
+  <script src="./laboratorio.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#objetivo">Ir al formulario</a>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><span class="sparkle"></span></span>
+        Laboratorio de Prompts
+      </div>
+      <button id="tema" class="theme-button" type="button" role="switch" aria-checked="false">
+        <span class="switch-track" aria-hidden="true"></span>
+        Tema oscuro
+      </button>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section class="intro" aria-labelledby="titulo">
+      <div class="intro-copy">
+        <h1 id="titulo">De una idea a un<br class="desktop-break"> <em>buen prompt.</em></h1>
+        <p>Escribe instrucciones claras para ChatGPT. Empieza con un ejemplo o crea tu propio prompt.</p>
+      </div>
+      <div class="orbit-art" aria-hidden="true">
+        <span class="orbit orbit-one"></span>
+        <span class="orbit orbit-two"></span>
+        <span class="orbit orbit-three"></span>
+        <span class="sparkle orbit-star"></span>
+        <span class="sparkle orbit-satellite"></span>
+        <span class="orbit-dot"></span>
+      </div>
+    </section>
+
+    <noscript><p class="notice">Activa JavaScript para usar el formulario y copiar el prompt.</p></noscript>
+
+    <div class="workspace">
+      <section class="panel" aria-labelledby="editor-titulo">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <span class="heading-icon" aria-hidden="true"><span class="pencil-icon"></span></span>
+            <h2 id="editor-titulo">Crea tu prompt</h2>
+          </div>
+          <button id="limpiar" class="text-button" type="button" disabled>Limpiar</button>
+        </div>
+
+        <form id="editor" class="editor" autocomplete="off">
+          <div class="field template-field">
+            <label for="plantilla">Plantilla</label>
+            <div class="select-wrap">
+              <select id="plantilla">
+                <option value="">Empezar desde cero</option>
+                <optgroup label="Escuela y estudio">
+                  <option value="primaria">Maestra de primaria</option>
+                  <option value="secundaria">Estudiante de secundaria</option>
+                  <option value="universidad">Estudiante de universidad</option>
+                </optgroup>
+                <optgroup label="Hogar y trabajo">
+                  <option value="hogar">Hogar</option>
+                  <option value="taxi">Taxista</option>
+                  <option value="comida">Negocio de comida rápida</option>
+                  <option value="cortes">Estilista de cortes de cabello</option>
+                  <option value="estetica">Venta de productos de estética</option>
+                  <option value="desarrollo">Desarrollo de software</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="objetivo">¿Qué necesitas? <span class="field-note">Obligatorio</span></label>
+            <textarea id="objetivo" rows="2" required placeholder="Ej. Prepara un plan de estudio para mi examen de matemáticas."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="contexto">Contexto <span class="field-note">Opcional</span></label>
+            <textarea id="contexto" rows="2" placeholder="Ej. Estoy en secundaria y tengo 30 minutos al día."></textarea>
+          </div>
+
+          <div class="field">
+            <label for="formato">Formato de respuesta <span class="field-note">Opcional</span></label>
+            <div class="select-wrap">
+              <select id="formato">
+                <option value="">Elige un formato</option>
+                <option value="pasos">Paso a paso</option>
+                <option value="lista">Lista</option>
+                <option value="tabla">Tabla</option>
+                <option value="mensaje">Mensaje breve</option>
+                <option value="guia">Guía con secciones</option>
+                <option value="personalizado">Otro formato</option>
+              </select>
+            </div>
+            <input id="formato-personalizado" type="text" aria-label="Describe el formato de respuesta" placeholder="Ej. Una tabla y tres recomendaciones breves" hidden>
+          </div>
+
+          <details id="opciones" class="options">
+            <summary>
+              <span>Opciones adicionales</span>
+              <span id="opciones-cantidad" class="options-count" hidden></span>
+              <span class="chevron" aria-hidden="true"></span>
+            </summary>
+            <div class="options-fields">
+              <div class="field">
+                <label for="rol">Rol de ChatGPT</label>
+                <input id="rol" type="text" placeholder="Ej. Tutor de matemáticas">
+              </div>
+              <div class="field">
+                <label for="tono">Tono</label>
+                <input id="tono" type="text" placeholder="Ej. Claro, paciente y con palabras sencillas">
+              </div>
+              <div class="field">
+                <label for="limites">Límites o indicaciones</label>
+                <textarea id="limites" rows="2" placeholder="Ej. Dame pistas antes de mostrar la solución."></textarea>
+              </div>
+              <div class="field">
+                <label for="criterios">¿Qué debe cumplir la respuesta?</label>
+                <textarea id="criterios" rows="2" placeholder="Ej. Incluye un ejemplo y un ejercicio para practicar."></textarea>
+              </div>
+              <label class="check-label" for="aclarar">
+                <input id="aclarar" type="checkbox">
+                Pide una aclaración si falta algo indispensable
+              </label>
+            </div>
+          </details>
+
+          <a class="secondary-button mobile-preview" id="ver-prompt" href="#vista-previa" hidden>Ver mi prompt</a>
+        </form>
+      </section>
+
+      <section class="panel preview" id="vista-previa" tabindex="-1" aria-labelledby="vista-titulo">
+        <div class="panel-heading">
+          <div class="panel-title">
+            <span class="heading-icon" aria-hidden="true"><span class="code-icon">[ ]</span></span>
+            <h2 id="vista-titulo">Tu prompt</h2>
+          </div>
+          <button id="copiar" class="primary-button" type="button" disabled><span class="copy-icon" aria-hidden="true"></span>Copiar</button>
+        </div>
+        <div class="preview-body">
+          <div class="output-box">
+            <div id="sin-prompt" class="empty-state">
+              <span class="empty-icon" aria-hidden="true"><span class="document-icon"></span></span>
+              <p>Tu prompt aparecerá aquí</p>
+              <span>Escribe lo que necesitas o elige una plantilla.</span>
+            </div>
+            <textarea id="resultado" aria-label="Prompt para ChatGPT" readonly spellcheck="false" hidden></textarea>
+          </div>
+          <div class="preview-meta">
+            <p id="estado" class="copy-status" role="status"></p>
+            <a id="abrir-chatgpt" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer" hidden>Abrir ChatGPT <span class="sr-only">(nueva pestaña)</span></a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>Evita incluir datos personales.</span>
+      <span>Cuando copies el prompt, revísalo antes de enviarlo.</span>
+    </footer>
+  </main>
+</body>
+</html>

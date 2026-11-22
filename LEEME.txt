@@ -1,0 +1,44 @@
+LABORATORIO DE PROMPTS
+Guía rápida e informe de pruebas
+
+Cómo usarlo
+
+1. Extrae el ZIP y abre index.html en un navegador moderno.
+2. Elige una plantilla o escribe qué necesitas. Agrega contexto, formato u opciones adicionales si te sirven.
+3. Revisa la vista previa, pulsa Copiar y pega el texto en ChatGPT. Si el navegador bloquea la copia, seleccionará el texto para que puedas copiarlo manualmente.
+
+La herramienta arma el prompt en el navegador. Solo guarda la preferencia de tema cuando el navegador lo permite. Evita añadir datos personales o confidenciales al texto que vayas a compartir.
+
+Para uso escolar con menores de 13 años, un adulto debe interactuar con ChatGPT. Para usuarios de 13 a 17 años, OpenAI exige el permiso de su padre, madre o tutor.
+
+Publicación en GitHub Pages
+
+Sube los archivos extraídos a la raíz del repositorio, incluido .nojekyll. En GitHub, abre Settings > Pages. Selecciona Deploy from a branch, elige la rama donde subiste los archivos y la carpeta / (root), y guarda. Los estilos y el script usan rutas relativas, compatibles con sitios publicados en una subcarpeta. El proyecto no requiere instalar paquetes ni ejecutar una compilación.
+
+Informe de pruebas
+
+Fecha de verificación: 22 de noviembre de 2026.
+Entorno: Chrome 157.0.8103.79 en Windows, automatizado con Playwright.
+
+Resultados aprobados
+
+- Apertura de index.html, estado inicial y vista previa al escribir. Un objetivo vacío o con espacios mantiene la copia deshabilitada.
+- Las nueve plantillas cargan ejemplos distintos. Se pueden editar, cancelar el reemplazo de un borrador y limpiar el formulario.
+- El formato personalizado y las opciones adicionales aparecen correctamente. Los campos vacíos se omiten y el texto escrito se muestra como texto literal.
+- La copia conserva el contenido y los saltos de línea. Si se deniega el acceso al portapapeles, la página selecciona el prompt para copiarlo manualmente.
+- Temas claro y oscuro, preferencia del sistema, persistencia del tema al recargar y funcionamiento con almacenamiento bloqueado.
+- Diseño sin desplazamiento horizontal entre 320 y 1440 píxeles en los anchos probados. Se revisaron contraste, teclado, navegación a la vista previa y pantalla táctil emulada.
+- Carga con rutas relativas en una subruta HTTPS simulada. En los flujos probados no se observaron errores de JavaScript ni solicitudes de la aplicación a servicios externos.
+
+Alcance: se verificó el generador con una subruta simulada y como archivo local. Las pruebas no incluyeron un despliegue en GitHub Pages, dispositivos móviles físicos, otros navegadores ni una comparación de respuestas de ChatGPT. La estructura facilita expresar la petición, y la calidad de la respuesta depende de la información proporcionada y de su revisión.
+
+Referencias
+
+Buenas prácticas para ChatGPT
+https://help.openai.com/en/articles/10032626-prompt-engineering-best-practices-for-chatgpt
+
+Requisitos de edad de ChatGPT
+https://help.openai.com/es-es/articles/8313401-is-chatgpt-safe-for-all-ages
+
+Configuración de la publicación en GitHub Pages
+https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site
